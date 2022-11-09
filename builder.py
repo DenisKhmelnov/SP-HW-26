@@ -1,6 +1,6 @@
 from typing import Optional
 
-from functions import filter_query, map_query, unique_query, sort_query, limit_query
+from functions import filter_query, map_query, unique_query, sort_query, limit_query, filter_regex
 
 FILE_NAME = 'data/apache_logs.txt'
 CMD_TO_FUNCTION = {
@@ -9,6 +9,7 @@ CMD_TO_FUNCTION = {
     'unique': unique_query,
     'sort': sort_query,
     'limit': limit_query,
+    'regex': filter_regex,
 }
 
 def iter_file(file_name: str):

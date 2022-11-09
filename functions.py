@@ -1,3 +1,5 @@
+import re
+
 def filter_query(param: str, data):
     return filter(lambda x: param in x, data)
 
@@ -15,3 +17,10 @@ def limit_query(param: str, data):
     limit = int(param)
     return list(data[:limit])
 
+def filter_regex(param: str, data):
+    output = []
+    for string in data:
+        query_match = re.findall(param, string)
+        if query_match:
+            output.extend(query_match)
+    return output
