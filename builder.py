@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List, Iterable
 
 from functions import filter_query, map_query, unique_query, sort_query, limit_query, filter_regex
 
@@ -12,12 +12,12 @@ CMD_TO_FUNCTION = {
     'regex': filter_regex,
 }
 
-def iter_file(file_name: str):
+def iter_file(file_name: str) -> Iterable:
     with open(file_name) as file:
         for row in file:
             yield row
 
-def query_builder(cmd, value, data=None):
+def query_builder(cmd, value, data=None) -> List:
     if data is None:
         prepared_data = iter_file(FILE_NAME)
     else:

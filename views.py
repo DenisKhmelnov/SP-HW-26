@@ -1,14 +1,16 @@
+from typing import Union, Tuple
+
 from flask import Blueprint, Response, request, jsonify
 from marshmallow import ValidationError
-from werkzeug.exceptions import BadRequest
+
 
 from builder import query_builder
-from models import RequestParams, BatchRequestParams
+from models import BatchRequestParams
 
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/perform_query', methods=['POST'])
-def perform_query():
+def perform_query() -> Union[Response, Tuple]:
     try:
         params = BatchRequestParams().load(data=request.json)
     except ValidationError as error:

@@ -1,3 +1,5 @@
+from typing import Union, Any
+
 from marshmallow import Schema, fields, validates_schema, ValidationError
 
 VALID_CMD = ('filter', 'map', 'unique', 'limit', 'sort', 'regex')
@@ -8,7 +10,7 @@ class RequestParams(Schema):
 
 
     @validates_schema
-    def validate_cmd_params(self, values, *args, **kwargs):
+    def validate_cmd_params(self, values: Any, *args, **kwargs) -> Any:
         if values['cmd'] not in VALID_CMD:
             raise ValidationError('cmd1 contains not valid value')
         return values
