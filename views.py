@@ -5,6 +5,7 @@ from marshmallow import ValidationError
 
 
 from builder import query_builder
+from db import db
 from models import BatchRequestParams
 
 main_bp = Blueprint('main', __name__)
@@ -25,3 +26,12 @@ def perform_query() -> Union[Response, Tuple]:
         )
 
     return jsonify(result)
+
+@main_bp.route('/test_db')
+def test_db():
+    result = db.session.execute('SELECT 1').scalar_one()
+    return jsonify(
+        {
+            'result': result,
+        }
+    )
