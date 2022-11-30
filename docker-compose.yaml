@@ -1,8 +1,7 @@
 version: '3.3'
 
 services:
-  app:
-    image: hw26
+  app: hw26
   db:
     image: postgres
     environment:
